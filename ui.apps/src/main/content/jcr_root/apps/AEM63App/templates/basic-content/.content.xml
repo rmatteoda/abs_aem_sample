@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root 
+    xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Template"
+    jcr:title="AEM63App Basic Content Page"
+    jcr:description="AEM63App Basic Content Page Description"
+    allowedPaths="[/content/AEM63App(/.*)?]"
+    ranking="{Long}1">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        sling:resourceType="AEM63App/components/page/basic-content"/>
+ </jcr:root>

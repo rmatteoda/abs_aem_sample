@@ -1,0 +1,45 @@
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"
+      data-sly-use.head="head.js"
+      data-sly-use.headlibRenderer="headlibs.html"
+      data-sly-use.wcmInit="/libs/wcm/foundation/components/page/initwcm.js"
+      data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+
+<meta data-sly-test.keywords="${head.keywords}" name="keywords" content="${keywords}"/>
+<meta data-sly-test.description="${head.description}" name="description" content="${description}"/>
+<meta data-sly-call="${headlibRenderer.headlibs @ designPath=head.designPath}" data-sly-unwrap></meta>
+
+<!--/* Outputs the WCM initialization code.If WCM mode is disabled nothing is rendered */-->
+<meta data-sly-test="${!wcmmode.disabled && wcmInit.isTouchAuthoring}" data-sly-call="${clientLib.all @ categories='cq.authoring.page'}" data-sly-unwrap></meta>
+<meta data-sly-test="${!wcmmode.disabled && !wcmInit.isTouchAuthoring}" data-sly-call="${clientLib.all @ categories='cq.wcm.edit'}" data-sly-unwrap></meta>
+<script data-sly-test="${!wcmmode.disabled && !wcmInit.isTouchAuthoring}" type="text/javascript">
+    (function() {
+
+        var cfg = ${wcmInit.undoConfig @ context='unsafe'};
+        cfg.pagePath = "${currentPage.path @ context='uri'}";
+
+        if (CQClientLibraryManager.channelCB() != "touch") {
+            cfg.enabled = ${wcmmode.edit @ context="scriptString"};
+            CQ.undo.UndoManager.initialize(cfg);
+            CQ.Ext.onReady(function() {
+                CQ.undo.UndoManager.detectCachedPage((new Date()).getTime());
+            });
+        }
+    })();
+
+    CQ.WCM.launchSidekick("${currentPage.path @ context='uri'}", {
+        propsDialog: "${wcmInit.dialogPath @ context='uri'}",
+        locked: ${currentPage.locked @ context="scriptString"}
+    });
+</script>
+
+<!--/** needed for the DTM integration and Google Analytics **/-->
+<meta data-sly-include="/libs/cq/cloudserviceconfigs/components/servicelibs/servicelibs.jsp" data-sly-unwrap></meta>
+
+<!-- /** favicons for all devices and browsers -->
+<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16 24x24 32x32 48x48 64x64" href="${currentDesign.path}/clientlibs_base/images/favicons/favicon.ico">
+<meta name="robots" content="${pageProperties.noindex || 'index'}"/>
+<!--/** Client libs CSS **/-->
+<sly data-sly-include="customheaderlibs.html" />
+<title>${properties['pageTitle'] || head.title}</title>
+</head>
