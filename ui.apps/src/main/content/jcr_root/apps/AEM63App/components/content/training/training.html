@@ -1,11 +1,17 @@
 
+<div data-sly-test="${wcmmode.edit && !properties.textName}" class="container_box">Please edit the ${component.name} component</div>
 
-<div class="AEM_App_class">
+<div data-sly-test="${properties.textName}" class="AEM_App_class">
     
-<h4 data-sly-test="${properties.textName}">Text property: ${properties.textName}</h4>
+<h4 data-sly-test="${properties.textName}">Text property(only with prop value): ${properties.textName}</h4>
 
-<p> this is without prop defined </p>
+<p> This is text area value: ${properties.textProp2} </p>
 
-<p> this is area text: ${properties.textProp2} </p>
+<p> Using multifield property </p>
+
+<dl data-sly-list="${properties.pages}">
+    <dt>index: ${itemList.index}</dt>
+    <dd>value: ${item}</dd>
+</dl>
 
 </div>

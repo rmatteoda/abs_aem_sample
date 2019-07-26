@@ -17,13 +17,44 @@
                     <text
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/foundation/form/textfield"
-                        fieldLabel="Text"
+                        fieldLabel="Text field"
                         name="./textName"/>
                     <textProp2
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/foundation/form/textarea"
-                        fieldLabel="Text"
+                        fieldLabel="Text area"
                         name="./textProp2"/>
+                     <listFrom
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/select"
+                        class="cq-dialog-dropdown-showhide"
+                        fieldLabel="Build select sample"
+                        name="./listFrom">
+                        <items jcr:primaryType="nt:unstructured">
+                            <children
+                                jcr:primaryType="nt:unstructured"
+                                text="Child pages"
+                                value="children"/>
+                            <static
+                                jcr:primaryType="nt:unstructured"
+                                text="Fixed list"
+                                value="static"/>
+                            <search
+                                jcr:primaryType="nt:unstructured"
+                                text="Search"
+                                value="search"/>
+                        </items>
+                    </listFrom>
+                    <pages
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/form/multifield"
+                        class="foundation-layout-util-maximized-alt">
+                        <field
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/form/pathbrowser"
+                            name="./pages"
+                            rootPath="/content"/>
+                    </pages>
                 </items>
             </column>
         </items>

@@ -2,5 +2,5 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/AEM63App"/>
     <filter root="/apps/sling" />
-    <filter root="/etc/designs/AEM63App"/>
+    <filter root="/etc/designs/AEM63App/clientlib-all"/>
 </workspaceFilter>
